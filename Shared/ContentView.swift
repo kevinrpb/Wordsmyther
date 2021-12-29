@@ -14,41 +14,47 @@ struct ContentView: View {
     @State private var textInput: String = ""
     @State private var previousInput: String = ""
     
+    @ScaledMetric private var size: Double = 20
+    
     private var selected: [Character] {
-        var chars = controller.selectedLetters
-        
-        chars.append(contentsOf: Array(repeating: " ", count: 9 - chars.count))
-        
-        return chars
+        controller.selectedLetters
+            + Array(repeating: " ", count: 9 - controller.selectedLetters.count)
     }
 
     var body: some View {
         NavigationView {
-            HStack {
-                Spacer()
+            ScrollView {
                 VStack {
                     LetterGrid()
                         .padding()
                     
                     Spacer()
                     
-                    
+                    VStack {
+                        ForEach(3...9, id: \.self) { length in
+                            WordLinkButton(length)
+                        }
+                    }
+                    .padding()
                 }
-                Spacer()
             }
             .background(
                 TextInput()
             )
             .navigationTitle("Wordsmyther")
+            .background(Color.indigo.opacity(0.2))
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
-            .background(Color.indigo.opacity(0.2))
             #elseif os(macOS)
 //            .frame(width: 400)
             #endif
             .toolbar {
-                ToolbarItem(placement: .destructiveAction) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     EraseButton()
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    GenerateButton()
                 }
             }
             
@@ -67,37 +73,53 @@ struct ContentView: View {
     }
 
     private func LetterGrid() -> some View {
-        GeometryReader { proxy in
-            LazyVGrid(columns: Array.init(repeating: .init(), count: 3)) {
-                ForEach(self.selected, id: \.self) { letter in
-                    Text("\(letter.description)")
-                        .font(.body)
-                        .foregroundColor(.indigo)
-                        .padding()
-                        .onTapGesture {
-                            withAnimation {
-                                controller.select(letter)
-                            }
-                        }
+        HStack {
+            Spacer()
+
+            VStack {
+                HStack {
+                    LetterGridItem(selected[0])
+                    LetterGridItem(selected[1])
+                    LetterGridItem(selected[2])
+                }
+                HStack {
+                    LetterGridItem(selected[3])
+                    LetterGridItem(selected[4])
+                    LetterGridItem(selected[5])
+                }
+                HStack {
+                    LetterGridItem(selected[6])
+                    LetterGridItem(selected[7])
+                    LetterGridItem(selected[8])
                 }
             }
             .padding()
-            .frame(
-                width: proxy.size.width,
-                height: proxy.size.width
-            )
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.regularMaterial)
                     .shadow(color: textInputFocused ? .indigo : .clear, radius: 2)
             )
-            .onTapGesture {
-                withAnimation {
-                    textInputFocused.toggle()
-                }
+
+            Spacer()
+        }
+        .onTapGesture {
+            withAnimation {
+                textInputFocused.toggle()
             }
         }
-        .frame(maxWidth: 350)
+    }
+    
+    private func LetterGridItem(_ letter: Character) -> some View {
+        Text("\(letter.description)")
+            .font(.body)
+            .foregroundColor(.indigo)
+            .frame(width: size, height: size)
+            .padding()
+            .onTapGesture {
+                withAnimation {
+                    controller.select(letter)
+                }
+            }
     }
     
     private func TextInput() -> some View {
@@ -133,37 +155,79 @@ struct ContentView: View {
             }
     }
     
-    @ViewBuilder
-    private func EraseButton() -> some View {
-        if controller.selectedLetters.count > 0 {
-            Button {
-                withAnimation {
-                    controller.clearSelected()
+    private func WordLinkButton(_ length: Int) -> some View {
+        NavigationLink {
+            WordsView(length: length)
+        } label: {
+            HStack {
+                HStack{
+                    Text("\(length)")
+                        .padding(8)
+                        .background(
+                            Circle()
+                                .fill(.indigo.opacity(0.1))
+                        )
+                    Text("Letters")
                 }
-            } label: {
-                Label("Erase", systemImage: "xmark")
-                    .font(.caption2)
-                    .foregroundColor(.indigo)
-                    .padding(6)
-                #if os(iOS)
-                    .labelStyle(.iconOnly)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.indigo.opacity(0.1))
-                    )
-                #else
-                    .labelStyle(.titleAndIcon)
-                #endif
+                Spacer()
+                HStack {
+                    Text("\(controller.words[length]?.count ?? 0)")
+                    Text("words")
+                }
+                .font(.caption)
             }
-        } else {
-            Button {} label: { EmptyView() }
-                .opacity(0)
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.regularMaterial)
+            )
         }
+        .disabled(controller.hasChanges)
     }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    private func EraseButton() -> some View {
+        Button {
+            withAnimation {
+                controller.clearSelected()
+            }
+        } label: {
+            Label("Erase", systemImage: "xmark")
+                .font(.caption2)
+                .foregroundColor(.indigo)
+                .padding(8)
+            #if os(iOS)
+                .labelStyle(.iconOnly)
+                .background(
+                    Circle()
+                        .fill(.indigo.opacity(0.1))
+                )
+            #else
+                .labelStyle(.titleAndIcon)
+            #endif
+        }
+        .opacity(controller.selectedLetters.count > 0 ? 1 : 0)
+    }
+    
+    private func GenerateButton() -> some View {
+        Button {
+            withAnimation {
+                controller.generateWords()
+            }
+        } label: {
+            Label("Generate", systemImage: "character.textbox")
+                .font(.caption2)
+                .foregroundColor(.indigo)
+                .padding(8)
+            #if os(iOS)
+                .labelStyle(.iconOnly)
+                .background(
+                    Circle()
+                        .fill(.indigo.opacity(0.1))
+                )
+            #else
+                .labelStyle(.titleAndIcon)
+            #endif
+        }
+        .opacity(controller.selectedLetters.count == 9 ? 1 : 0)
     }
 }

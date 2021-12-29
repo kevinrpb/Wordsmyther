@@ -12,7 +12,7 @@ class Controller: ObservableObject {
     static let allowedLetters: [Character] = Array("QWERTYUIOPASDFGHJKLZXCVBNM")
     
     @Published var selectedLetters: [Character] = []
-    @Published var hasChanges: Bool = false
+    @Published var hasChanges: Bool = true
     @Published var words: [Int: [String]] = [
         3: [],
         4: [],
@@ -56,5 +56,6 @@ class Controller: ObservableObject {
     
     func generateWords() {
         words.keys.forEach { length in generateWords(of: length) }
+        hasChanges = false
     }
 }

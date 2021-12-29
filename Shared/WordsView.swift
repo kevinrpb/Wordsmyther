@@ -9,16 +9,20 @@ import SwiftUI
 
 struct WordsView: View {
     @EnvironmentObject var controller: Controller
+    
+    let length: Int
 
     var body: some View {
-        VStack {
-            Text("words")
+        ScrollView {
+            HStack {
+                Spacer()
+                VStack {
+                    Text("words of length \(length)")
+                }
+                Spacer()
+            }
         }
-    }
-}
-
-struct WordsView_Previews: PreviewProvider {
-    static var previews: some View {
-        WordsView()
+        .background(Color.indigo.opacity(0.2))
+        .navigationTitle("\(length) letters")
     }
 }

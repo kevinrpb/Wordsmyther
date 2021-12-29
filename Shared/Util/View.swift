@@ -1,5 +1,5 @@
 //
-//  View+hideKeyboard.swift
+//  View.swift
 //  Wordsmyther
 //
 //  Created by Kevin Romero Peces-Barba on 29/12/21.

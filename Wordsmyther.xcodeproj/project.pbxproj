@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D71C836C277CEA7D00AC8F5F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C836B277CEA7D00AC8F5F /* Array.swift */; };
+		D71C836D277CEA7D00AC8F5F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C836B277CEA7D00AC8F5F /* Array.swift */; };
 		D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
+		D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
+		D72C1F6F277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
 		D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
 		D787A13D277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
 		D787A13E277C82680033F187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12D277C82670033F187 /* ContentView.swift */; };
@@ -19,12 +23,14 @@
 		D787A14F277C83E80033F187 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A14D277C83E80033F187 /* WordsView.swift */; };
 		D787A151277C84190033F187 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A150277C84190033F187 /* Controller.swift */; };
 		D787A152277C84190033F187 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A150277C84190033F187 /* Controller.swift */; };
-		D787A154277CBAC70033F187 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View+hideKeyboard.swift */; };
-		D787A155277CBAC70033F187 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View+hideKeyboard.swift */; };
+		D787A154277CBAC70033F187 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View.swift */; };
+		D787A155277CBAC70033F187 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D71C836B277CEA7D00AC8F5F /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		D72C1F69277CC1A20061D868 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		D72C1F6D277CE48B0061D868 /* Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		D787A12C277C82670033F187 /* WordsmytherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsmytherApp.swift; sourceTree = "<group>"; };
 		D787A12D277C82670033F187 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D787A12E277C82680033F187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -33,7 +39,7 @@
 		D787A13B277C82680033F187 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		D787A14D277C83E80033F187 /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
 		D787A150277C84190033F187 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		D787A153277CBAC70033F187 /* View+hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hideKeyboard.swift"; sourceTree = "<group>"; };
+		D787A153277CBAC70033F187 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +63,10 @@
 		D72C1F6C277CC3F10061D868 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				D787A153277CBAC70033F187 /* View+hideKeyboard.swift */,
+				D71C836B277CEA7D00AC8F5F /* Array.swift */,
+				D72C1F6D277CE48B0061D868 /* Comparable.swift */,
 				D72C1F69277CC1A20061D868 /* ScreenSize.swift */,
+				D787A153277CBAC70033F187 /* View.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -201,9 +209,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */,
-				D787A154277CBAC70033F187 /* View+hideKeyboard.swift in Sources */,
+				D787A154277CBAC70033F187 /* View.swift in Sources */,
+				D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */,
 				D787A151277C84190033F187 /* Controller.swift in Sources */,
 				D787A14E277C83E80033F187 /* WordsView.swift in Sources */,
+				D71C836C277CEA7D00AC8F5F /* Array.swift in Sources */,
 				D787A13E277C82680033F187 /* ContentView.swift in Sources */,
 				D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */,
 			);
@@ -214,9 +224,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */,
-				D787A155277CBAC70033F187 /* View+hideKeyboard.swift in Sources */,
+				D787A155277CBAC70033F187 /* View.swift in Sources */,
+				D72C1F6F277CE48B0061D868 /* Comparable.swift in Sources */,
 				D787A152277C84190033F187 /* Controller.swift in Sources */,
 				D787A14F277C83E80033F187 /* WordsView.swift in Sources */,
+				D71C836D277CEA7D00AC8F5F /* Array.swift in Sources */,
 				D787A13F277C82680033F187 /* ContentView.swift in Sources */,
 				D787A13D277C82680033F187 /* WordsmytherApp.swift in Sources */,
 			);
