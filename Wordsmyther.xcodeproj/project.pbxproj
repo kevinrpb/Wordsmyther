@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
+		D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
 		D787A13D277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
 		D787A13E277C82680033F187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12D277C82670033F187 /* ContentView.swift */; };
 		D787A13F277C82680033F187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12D277C82670033F187 /* ContentView.swift */; };
 		D787A140277C82680033F187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D787A12E277C82680033F187 /* Assets.xcassets */; };
 		D787A141277C82680033F187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D787A12E277C82680033F187 /* Assets.xcassets */; };
+		D787A14E277C83E80033F187 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A14D277C83E80033F187 /* WordsView.swift */; };
+		D787A14F277C83E80033F187 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A14D277C83E80033F187 /* WordsView.swift */; };
+		D787A151277C84190033F187 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A150277C84190033F187 /* Controller.swift */; };
+		D787A152277C84190033F187 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A150277C84190033F187 /* Controller.swift */; };
+		D787A154277CBAC70033F187 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View+hideKeyboard.swift */; };
+		D787A155277CBAC70033F187 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View+hideKeyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D72C1F69277CC1A20061D868 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		D787A12C277C82670033F187 /* WordsmytherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsmytherApp.swift; sourceTree = "<group>"; };
 		D787A12D277C82670033F187 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D787A12E277C82680033F187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D787A133277C82680033F187 /* Wordsmyther.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordsmyther.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D787A139277C82680033F187 /* Wordsmyther.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordsmyther.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D787A13B277C82680033F187 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		D787A14D277C83E80033F187 /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
+		D787A150277C84190033F187 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		D787A153277CBAC70033F187 /* View+hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hideKeyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D72C1F6C277CC3F10061D868 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D787A153277CBAC70033F187 /* View+hideKeyboard.swift */,
+				D72C1F69277CC1A20061D868 /* ScreenSize.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		D787A126277C82670033F187 = {
 			isa = PBXGroup;
 			children = (
@@ -55,7 +76,10 @@
 			isa = PBXGroup;
 			children = (
 				D787A12C277C82670033F187 /* WordsmytherApp.swift */,
+				D787A150277C84190033F187 /* Controller.swift */,
 				D787A12D277C82670033F187 /* ContentView.swift */,
+				D787A14D277C83E80033F187 /* WordsView.swift */,
+				D72C1F6C277CC3F10061D868 /* Util */,
 				D787A12E277C82680033F187 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -176,6 +200,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */,
+				D787A154277CBAC70033F187 /* View+hideKeyboard.swift in Sources */,
+				D787A151277C84190033F187 /* Controller.swift in Sources */,
+				D787A14E277C83E80033F187 /* WordsView.swift in Sources */,
 				D787A13E277C82680033F187 /* ContentView.swift in Sources */,
 				D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */,
 			);
@@ -185,6 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */,
+				D787A155277CBAC70033F187 /* View+hideKeyboard.swift in Sources */,
+				D787A152277C84190033F187 /* Controller.swift in Sources */,
+				D787A14F277C83E80033F187 /* WordsView.swift in Sources */,
 				D787A13F277C82680033F187 /* ContentView.swift in Sources */,
 				D787A13D277C82680033F187 /* WordsmytherApp.swift in Sources */,
 			);

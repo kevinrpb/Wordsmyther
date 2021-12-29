@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct WordsmytherApp: App {
+    private let controller: Controller = .init()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(controller)
         }
     }
 }
