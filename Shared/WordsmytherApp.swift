@@ -16,5 +16,11 @@ struct WordsmytherApp: App {
             ContentView()
                 .environmentObject(controller)
         }
+        .commands {
+            SidebarCommands()
+        }
+        #if os(macOS)
+        .windowStyle(.hiddenTitleBar)
+        #endif
     }
 }

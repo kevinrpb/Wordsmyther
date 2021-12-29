@@ -10,10 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var controller: Controller
 
-    @ScaledMetric private var letterFrame: Double = Double(ScreenSize.width) / 25
-
     @FocusState private var textInputFocused: Bool
     @State private var textInput: String = ""
+    @State private var previousInput: String = ""
     
     private var selected: [Character] {
         var chars = controller.selectedLetters
@@ -29,29 +28,35 @@ struct ContentView: View {
                 Spacer()
                 VStack {
                     LetterGrid()
-                        .frame(width: letterFrame*12)
                         .padding()
                     
                     Spacer()
+                    
+                    
                 }
                 Spacer()
             }
-            .background(Color.indigo.opacity(0.2))
             .background(
                 TextInput()
             )
             .navigationTitle("Wordsmyther")
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            .background(Color.indigo.opacity(0.2))
+            #elseif os(macOS)
+//            .frame(width: 400)
             #endif
             .toolbar {
                 ToolbarItem(placement: .destructiveAction) {
                     EraseButton()
                 }
             }
+            
+            #if os(macOS)
+            EmptyView()
+            #endif
         }
         .navigationViewStyle(.automatic)
-        .background(Color.indigo.opacity(0.2))
         #if os(iOS)
         .onTapGesture {
             withAnimation {
@@ -62,46 +67,69 @@ struct ContentView: View {
     }
 
     private func LetterGrid() -> some View {
-        LazyVGrid(columns: Array.init(repeating: .init(), count: 3)) {
-            ForEach(self.selected, id: \.self) { letter in
-                Text("\(letter.description)")
-                    .font(.body)
-                    .foregroundColor(.indigo)
-                    .frame(width: letterFrame, height: letterFrame)
-                    .padding()
-                    .onTapGesture {
-                        withAnimation {
-                            controller.select(letter)
+        GeometryReader { proxy in
+            LazyVGrid(columns: Array.init(repeating: .init(), count: 3)) {
+                ForEach(self.selected, id: \.self) { letter in
+                    Text("\(letter.description)")
+                        .font(.body)
+                        .foregroundColor(.indigo)
+                        .padding()
+                        .onTapGesture {
+                            withAnimation {
+                                controller.select(letter)
+                            }
                         }
-                    }
+                }
+            }
+            .padding()
+            .frame(
+                width: proxy.size.width,
+                height: proxy.size.width
+            )
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.regularMaterial)
+                    .shadow(color: textInputFocused ? .indigo : .clear, radius: 2)
+            )
+            .onTapGesture {
+                withAnimation {
+                    textInputFocused.toggle()
+                }
             }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.regularMaterial)
-                .shadow(color: textInputFocused ? .indigo : .clear, radius: 2)
-        )
-        .onTapGesture {
-            withAnimation {
-                textInputFocused.toggle()
-            }
-        }
+        .frame(maxWidth: 350)
     }
     
     private func TextInput() -> some View {
         TextField("Letter", text: $textInput)
-//            .keyboardType(.default)
             .focused($textInputFocused)
             .opacity(0)
+            .onReceive(controller.$selectedLetters) { newValue in
+                textInput = String(controller.selectedLetters)
+//                print("sel:   ", textInput)
+                if textInput.count < previousInput.count {
+                    previousInput = textInput.uppercased()
+                }
+            }
             .onChange(of: textInput) { newValue in
-                guard newValue.count > 0,
-                      let letter = newValue.uppercased().first else { return }
-
+                guard newValue.uppercased() != previousInput.uppercased() else { return }
+//                print("")
+//                print("prev:  ", previousInput)
+//                print("new:   ", newValue)
+                
+                let value = newValue.uppercased()
+                var letter: Character
+                
+                if newValue.count > previousInput.count {
+                    letter = value.last ?? " "
+                } else {
+                    letter = previousInput.last ?? " "
+                }
+                
+                previousInput = textInput.uppercased()
                 withAnimation {
                     controller.select(letter)
                 }
-                textInput = ""
             }
     }
     
