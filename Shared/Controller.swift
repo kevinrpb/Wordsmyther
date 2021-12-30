@@ -5,7 +5,7 @@
 //  Created by Kevin Romero Peces-Barba on 29/12/21.
 //
 
-import Foundation
+import Algorithms
 import SwiftUI
 
 class Controller: ObservableObject {
@@ -13,6 +13,7 @@ class Controller: ObservableObject {
     
     @Published var selectedLetters: [Character] = []
     @Published var hasChanges: Bool = true
+    @Published var isLoading: Bool = false
     @Published var words: [Int: [String]] = [
         3: [],
         4: [],
@@ -26,6 +27,7 @@ class Controller: ObservableObject {
     func select(_ letter: Character) {
         guard Self.allowedLetters.contains(letter) else { return }
 
+        // TODO: Should actually allow duplicates
         if selectedLetters.contains(letter) {
             return deselect(letter)
         }
@@ -52,10 +54,27 @@ class Controller: ObservableObject {
     
     private func generateWords(of length: Int) {
         guard (3...9).contains(length) else { return }
+        
+        let permutations = selectedLetters
+            .uniquePermutations(ofCount: length)
+            .map { String($0) }
+        
+        DispatchQueue.main.sync {
+            words[length] = permutations
+        }
     }
     
     func generateWords() {
-        words.keys.forEach { length in generateWords(of: length) }
-        hasChanges = false
+        isLoading = true
+        
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now().advanced(by: .milliseconds(100))) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.words.keys.forEach { length in strongSelf.generateWords(of: length) }
+            
+            DispatchQueue.main.sync {
+                strongSelf.hasChanges = false
+                strongSelf.isLoading = false
+            }
+        }
     }
 }

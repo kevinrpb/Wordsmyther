@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D71C836C277CEA7D00AC8F5F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C836B277CEA7D00AC8F5F /* Array.swift */; };
 		D71C836D277CEA7D00AC8F5F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C836B277CEA7D00AC8F5F /* Array.swift */; };
+		D71C8370277CF60C00AC8F5F /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = D71C836F277CF60C00AC8F5F /* Algorithms */; };
+		D71C8373277CF63800AC8F5F /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = D71C8372277CF63800AC8F5F /* Algorithms */; };
+		D71C8376277CF8B000AC8F5F /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */; };
+		D71C8378277CF8B900AC8F5F /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D71C8377277CF8B900AC8F5F /* ActivityIndicatorView */; };
 		D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71C8376277CF8B000AC8F5F /* ActivityIndicatorView in Frameworks */,
+				D71C8370277CF60C00AC8F5F /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,12 +60,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71C8378277CF8B900AC8F5F /* ActivityIndicatorView in Frameworks */,
+				D71C8373277CF63800AC8F5F /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D71C8371277CF63800AC8F5F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D72C1F6C277CC3F10061D868 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +92,7 @@
 				D787A12B277C82670033F187 /* Shared */,
 				D787A13A277C82680033F187 /* macOS */,
 				D787A134277C82680033F187 /* Products */,
+				D71C8371277CF63800AC8F5F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +142,10 @@
 			dependencies = (
 			);
 			name = "Wordsmyther (iOS)";
+			packageProductDependencies = (
+				D71C836F277CF60C00AC8F5F /* Algorithms */,
+				D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */,
+			);
 			productName = "Wordsmyther (iOS)";
 			productReference = D787A133277C82680033F187 /* Wordsmyther.app */;
 			productType = "com.apple.product-type.application";
@@ -143,6 +163,10 @@
 			dependencies = (
 			);
 			name = "Wordsmyther (macOS)";
+			packageProductDependencies = (
+				D71C8372277CF63800AC8F5F /* Algorithms */,
+				D71C8377277CF8B900AC8F5F /* ActivityIndicatorView */,
+			);
 			productName = "Wordsmyther (macOS)";
 			productReference = D787A139277C82680033F187 /* Wordsmyther.app */;
 			productType = "com.apple.product-type.application";
@@ -174,6 +198,10 @@
 				Base,
 			);
 			mainGroup = D787A126277C82670033F187;
+			packageReferences = (
+				D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+			);
 			productRefGroup = D787A134277C82680033F187 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -496,6 +524,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D71C836F277CF60C00AC8F5F /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		D71C8372277CF63800AC8F5F /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+		D71C8377277CF8B900AC8F5F /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D787A127277C82670033F187 /* Project object */;
 }

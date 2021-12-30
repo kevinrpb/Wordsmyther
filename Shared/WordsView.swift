@@ -17,7 +17,22 @@ struct WordsView: View {
             HStack {
                 Spacer()
                 VStack {
-                    Text("words of length \(length)")
+                    LazyVGrid(columns: Array(repeating: .init(), count: 2)) {
+                        ForEach(controller.words[length] ?? [], id: \.self) { word in
+                            HStack {
+                                Spacer()
+                                Text(word)
+                                Spacer()
+                            }
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .fill(.regularMaterial)
+                            )
+                        }
+                    }
+                    .padding()
+                    
                 }
                 Spacer()
             }

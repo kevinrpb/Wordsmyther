@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
 struct ContentView: View {
     @EnvironmentObject var controller: Controller
@@ -23,20 +24,36 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack {
-                    LetterGrid()
-                        .padding()
-                    
-                    Spacer()
-                    
+            ZStack {
+                ScrollView {
                     VStack {
-                        ForEach(3...9, id: \.self) { length in
-                            WordLinkButton(length)
+                        LetterGrid()
+                            .padding()
+                        
+                        Spacer()
+                        
+                        VStack {
+                            ForEach(3...9, id: \.self) { length in
+                                WordLinkButton(length)
+                            }
                         }
+                        .padding()
                     }
-                    .padding()
                 }
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        ActivityIndicatorView(isVisible: .constant(true), type: .default)
+                            .frame(width: 50.0, height: 50.0)
+                            .foregroundColor(.indigo)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .background(.ultraThinMaterial)
+                .opacity(controller.isLoading ? 1 : 0)
             }
             .background(
                 TextInput()
@@ -117,7 +134,7 @@ struct ContentView: View {
             .padding()
             .onTapGesture {
                 withAnimation {
-                    controller.select(letter)
+                    controller.deselect(letter)
                 }
             }
     }
@@ -160,21 +177,22 @@ struct ContentView: View {
             WordsView(length: length)
         } label: {
             HStack {
-                HStack{
-                    Text("\(length)")
-                        .padding(8)
-                        .background(
-                            Circle()
-                                .fill(.indigo.opacity(0.1))
-                        )
-                    Text("Letters")
-                }
+                Text("\(length)")
+                    .padding(8)
+                    .background(
+                        Circle()
+                            .fill(.indigo.opacity(0.1))
+                    )
+                Text("Letters")
+
                 Spacer()
-                HStack {
-                    Text("\(controller.words[length]?.count ?? 0)")
-                    Text("words")
-                }
-                .font(.caption)
+
+                Text("\(controller.words[length]?.count ?? 0)")
+                    .font(.caption)
+                Text("words")
+                    .font(.caption)
+
+                Image(systemName: "chevron.right")
             }
             .padding()
             .background(
@@ -182,6 +200,8 @@ struct ContentView: View {
                     .fill(.regularMaterial)
             )
         }
+        .foregroundColor(.indigo)
+        .opacity(controller.hasChanges ? 0.5 : 1)
         .disabled(controller.hasChanges)
     }
 
@@ -206,6 +226,7 @@ struct ContentView: View {
             #endif
         }
         .opacity(controller.selectedLetters.count > 0 ? 1 : 0)
+        .disabled(controller.isLoading) // TODO: should actually allow it and cancel the task
     }
     
     private func GenerateButton() -> some View {
@@ -228,6 +249,9 @@ struct ContentView: View {
                 .labelStyle(.titleAndIcon)
             #endif
         }
-        .opacity(controller.selectedLetters.count == 9 ? 1 : 0)
+        .opacity(
+            (controller.selectedLetters.count < 9 || controller.isLoading) ? 0 : 1
+        )
+        .disabled(controller.isLoading)
     }
 }
