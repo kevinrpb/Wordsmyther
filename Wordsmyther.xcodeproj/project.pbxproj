@@ -16,8 +16,10 @@
 		D728AA9B277F519800F062A6 /* FullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AA9A277F519800F062A6 /* FullScreenView.swift */; };
 		D728AA9D277F552A00F062A6 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AA9C277F552A00F062A6 /* Shape.swift */; };
 		D728AA9F277F5B3B00F062A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D728AA9E277F5B3B00F062A6 /* README.md */; };
-		D728AAA2277F632B00F062A6 /* SwiftUIcon in Frameworks */ = {isa = PBXBuildFile; productRef = D728AAA1277F632B00F062A6 /* SwiftUIcon */; };
 		D728AAA4277F633600F062A6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AAA3277F633600F062A6 /* Icon.swift */; };
+		D728AAAB277F6C6300F062A6 /* SwiftUIcon in Frameworks */ = {isa = PBXBuildFile; productRef = D728AAAA277F6C6300F062A6 /* SwiftUIcon */; };
+		D728AAAD277F6D9300F062A6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AAAC277F6D9300F062A6 /* UIColor.swift */; };
+		D728AAAF277F6E1A00F062A6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AAAE277F6E1A00F062A6 /* Color.swift */; };
 		D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
 		D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
@@ -38,6 +40,8 @@
 		D728AA9C277F552A00F062A6 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		D728AA9E277F5B3B00F062A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D728AAA3277F633600F062A6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		D728AAAC277F6D9300F062A6 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		D728AAAE277F6E1A00F062A6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D72C1F69277CC1A20061D868 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		D72C1F6D277CE48B0061D868 /* Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		D787A12C277C82670033F187 /* WordsmytherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsmytherApp.swift; sourceTree = "<group>"; };
@@ -55,7 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D71C8376277CF8B000AC8F5F /* ActivityIndicatorView in Frameworks */,
-				D728AAA2277F632B00F062A6 /* SwiftUIcon in Frameworks */,
+				D728AAAB277F6C6300F062A6 /* SwiftUIcon in Frameworks */,
 				D71C8370277CF60C00AC8F5F /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,10 +88,12 @@
 		D72C1F6C277CC3F10061D868 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				D72C1F69277CC1A20061D868 /* ScreenSize.swift */,
-				D728AAA3277F633600F062A6 /* Icon.swift */,
+				D728AAAE277F6E1A00F062A6 /* Color.swift */,
 				D728AA9A277F519800F062A6 /* FullScreenView.swift */,
 				D728AA98277F4E7000F062A6 /* HostingViewFinder.swift */,
+				D728AAA3277F633600F062A6 /* Icon.swift */,
+				D72C1F69277CC1A20061D868 /* ScreenSize.swift */,
+				D728AAAC277F6D9300F062A6 /* UIColor.swift */,
 				D728AA8E277F15DB00F062A6 /* Words.swift */,
 			);
 			path = Util;
@@ -155,7 +161,7 @@
 			packageProductDependencies = (
 				D71C836F277CF60C00AC8F5F /* Algorithms */,
 				D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */,
-				D728AAA1277F632B00F062A6 /* SwiftUIcon */,
+				D728AAAA277F6C6300F062A6 /* SwiftUIcon */,
 			);
 			productName = "Wordsmyther (iOS)";
 			productReference = D787A133277C82680033F187 /* Wordsmyther.app */;
@@ -188,7 +194,7 @@
 			packageReferences = (
 				D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
-				D728AAA0277F632B00F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */,
+				D728AAA9277F6C6300F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */,
 			);
 			productRefGroup = D787A134277C82680033F187 /* Products */;
 			projectDirPath = "";
@@ -241,12 +247,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D728AA8F277F15DB00F062A6 /* Words.swift in Sources */,
+				D728AAAD277F6D9300F062A6 /* UIColor.swift in Sources */,
 				D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */,
 				D728AA9B277F519800F062A6 /* FullScreenView.swift in Sources */,
 				D787A154277CBAC70033F187 /* View.swift in Sources */,
 				D728AA99277F4E7000F062A6 /* HostingViewFinder.swift in Sources */,
 				D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */,
 				D787A151277C84190033F187 /* Controller.swift in Sources */,
+				D728AAAF277F6E1A00F062A6 /* Color.swift in Sources */,
 				D728AA9D277F552A00F062A6 /* Shape.swift in Sources */,
 				D787A14E277C83E80033F187 /* WordsView.swift in Sources */,
 				D728AAA4277F633600F062A6 /* Icon.swift in Sources */,
@@ -475,12 +483,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		D728AAA0277F632B00F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */ = {
+		D728AAA9277F6C6300F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/velos/SwiftUIcon";
+			repositoryURL = "https://github.com/kevinrpb/SwiftUIcon";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -496,9 +504,9 @@
 			package = D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
 		};
-		D728AAA1277F632B00F062A6 /* SwiftUIcon */ = {
+		D728AAAA277F6C6300F062A6 /* SwiftUIcon */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D728AAA0277F632B00F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */;
+			package = D728AAA9277F6C6300F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */;
 			productName = SwiftUIcon;
 		};
 /* End XCSwiftPackageProductDependency section */

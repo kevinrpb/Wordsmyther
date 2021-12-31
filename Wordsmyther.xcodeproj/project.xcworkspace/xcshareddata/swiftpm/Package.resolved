@@ -30,11 +30,11 @@
       },
       {
         "package": "SwiftUIcon",
-        "repositoryURL": "https://github.com/velos/SwiftUIcon",
+        "repositoryURL": "https://github.com/kevinrpb/SwiftUIcon",
         "state": {
-          "branch": null,
-          "revision": "f530d4dd8ef80303675db5db12349cb53f59ae35",
-          "version": "0.3.0"
+          "branch": "main",
+          "revision": "0854efff1ae875e97650d98a544d5173c1e61731",
+          "version": null
         }
       }
     ]

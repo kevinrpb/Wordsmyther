@@ -10,10 +10,20 @@ import SwiftUIcon
 
 struct Icon: View {
     private let offset: Double = 55
+    private let indigo: Color = .init(
+        hue: 240/360,
+        saturation: 60/100,
+        brightness: 60/100
+    )
+    private let color: Color = .init(
+        hue: 240/360,
+        saturation: 60/100,
+        brightness: 90/100
+    )
 
     var body: some View {
         IconStack { canvas in
-            Color.indigo.opacity(0.2)
+            color
             
             Text("W")
                 .font(.system(size: 500 * canvas.scale, weight: .bold))
