@@ -14,12 +14,23 @@ struct WordsmytherApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .withHostingWindow { window in
+                    #if targetEnvironment(macCatalyst)
+                    if let titlebar = window?.windowScene?.titlebar {
+                        titlebar.titleVisibility = .hidden
+                        titlebar.toolbar = nil
+                    }
+                    #endif
+                }
         }
         .commands {
             SidebarCommands()
         }
-        #if os(macOS)
-        .windowStyle(.hiddenTitleBar)
-        #endif
+        // NOTE: this should be the way to do it, but the methods are not annotated
+        //       for the environment so...
+//        #if targetEnvironment(macCatalyst)
+//        .windowStyle(.hiddenTitleBar)
+//        .windowToolbarStyle(.unified(showsTitle: false))
+//        #endif
     }
 }

@@ -32,13 +32,9 @@ struct ContentView: View {
             .background(
                 TextInput()
             )
-            .navigationTitle("Wordsmyther")
             .background(WordsmytherApp.tintColor.opacity(0.2))
-            #if os(iOS)
+            .navigationTitle("Wordsmyther")
             .navigationBarTitleDisplayMode(.inline)
-            #elseif os(macOS)
-//            .frame(width: 400)
-            #endif
             .toolbar {
                 ToolbarItem(placement: horizontalSize == .compact ? .navigationBarLeading : .bottomBar) {
                     EraseButton()
@@ -49,10 +45,12 @@ struct ContentView: View {
                 }
             }
             
-            #if os(macOS)
-            EmptyView()
-                .background(WordsmytherApp.tintColor)
-            #endif
+            if horizontalSize == .regular {
+                FullScreenView {
+                    Text("...")
+                }
+                .background(WordsmytherApp.tintColor.opacity(0.1))
+            }
         }
         .navigationViewStyle(.automatic)
         #if os(iOS)
@@ -186,20 +184,14 @@ struct ContentView: View {
     }
     
     private func ActivityOverlay() -> some View {
-        HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                ActivityIndicatorView(isVisible: .constant(true), type: .default)
-                    .foregroundColor(WordsmytherApp.tintColor)
-                    .frame(width: 50.0, height: 50.0)
-                    .padding()
-                Text("Loading")
-                Text("(This may take a minute)")
-                    .font(.caption)
-                Spacer()
-            }
-            Spacer()
+        FullScreenView {
+            ActivityIndicatorView(isVisible: .constant(true), type: .default)
+                .foregroundColor(WordsmytherApp.tintColor)
+                .frame(width: 50.0, height: 50.0)
+                .padding()
+            Text("Loading")
+            Text("(This may take a minute)")
+                .font(.caption)
         }
         .background(.ultraThinMaterial)
         .opacity(controller.isLoading ? 1 : 0)
@@ -214,21 +206,24 @@ struct ContentView: View {
             Label("Erase", systemImage: "xmark")
                 .font(.caption2)
                 .foregroundColor(WordsmytherApp.tintColor)
-                .padding(8)
-            #if os(iOS)
-                .labelStyle(.iconOnly)
-                .background(
-                    Circle()
-                        .fill(WordsmytherApp.tintColor.opacity(0.1))
-                )
-            #else
-                .labelStyle(.titleAndIcon)
-            #endif
+                #if targetEnvironment(macCatalyst)
+                    .labelStyle(.titleAndIcon)
+                #else
+                    .labelStyle(.iconOnly)
+                    .padding(8)
+                    .background(
+                        Circle()
+                            .fill(WordsmytherApp.tintColor.opacity(0.1))
+                    )
+                #endif
         }
         .opacity(
             (controller.selectedLetters.count < 1 || controller.isLoading) ? 0 : 1
         )
         .disabled(controller.isLoading)
+        #if targetEnvironment(macCatalyst)
+        .buttonStyle(.bordered)
+        #endif
     }
     
     private func GenerateButton() -> some View {
@@ -240,20 +235,23 @@ struct ContentView: View {
             Label("Generate", systemImage: "character.textbox")
                 .font(.caption2)
                 .foregroundColor(WordsmytherApp.tintColor)
-                .padding(8)
-            #if os(iOS)
+            #if targetEnvironment(macCatalyst)
+                .labelStyle(.titleAndIcon)
+            #else
                 .labelStyle(.iconOnly)
+                .padding(8)
                 .background(
                     Circle()
                         .fill(WordsmytherApp.tintColor.opacity(0.1))
                 )
-            #else
-                .labelStyle(.titleAndIcon)
             #endif
         }
         .opacity(
             (controller.selectedLetters.count < 9 || controller.isLoading) ? 0 : 1
         )
         .disabled(controller.isLoading)
+        #if targetEnvironment(macCatalyst)
+        .buttonStyle(.bordered)
+        #endif
     }
 }

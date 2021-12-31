@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct WordsView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSize
+    @Environment(\.presentationMode) var presentationMode
+
     @EnvironmentObject var controller: Controller
     
     let length: Int
@@ -17,7 +20,7 @@ struct WordsView: View {
             HStack {
                 Spacer()
                 VStack {
-                    LazyVGrid(columns: Array(repeating: .init(), count: 2)) {
+                    LazyVGrid(columns: Array(repeating: .init(), count: horizontalSize == .compact ? 2 : 3)) {
                         ForEach(controller.words[length] ?? [], id: \.self) { word in
                             HStack {
                                 Spacer()
@@ -40,5 +43,10 @@ struct WordsView: View {
         }
         .background(Color.indigo.opacity(0.2))
         .navigationTitle("\(length) letters")
+        .navigationBarTitleDisplayMode(.inline)
+        .onReceive(controller.$isLoading) { _ in
+            // TODO: This doesn't really work xD
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
