@@ -9,10 +9,13 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Wordsmyther (macOS).xcscheme_^#shared#^_</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>D787A132277C82680033F187</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

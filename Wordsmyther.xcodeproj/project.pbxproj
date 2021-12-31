@@ -8,45 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		D71C836C277CEA7D00AC8F5F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C836B277CEA7D00AC8F5F /* Array.swift */; };
-		D71C836D277CEA7D00AC8F5F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C836B277CEA7D00AC8F5F /* Array.swift */; };
 		D71C8370277CF60C00AC8F5F /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = D71C836F277CF60C00AC8F5F /* Algorithms */; };
-		D71C8373277CF63800AC8F5F /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = D71C8372277CF63800AC8F5F /* Algorithms */; };
 		D71C8376277CF8B000AC8F5F /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */; };
-		D71C8378277CF8B900AC8F5F /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D71C8377277CF8B900AC8F5F /* ActivityIndicatorView */; };
 		D728AA8F277F15DB00F062A6 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AA8E277F15DB00F062A6 /* Words.swift */; };
-		D728AA90277F15DB00F062A6 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AA8E277F15DB00F062A6 /* Words.swift */; };
 		D728AA92277F15EC00F062A6 /* words in Resources */ = {isa = PBXBuildFile; fileRef = D728AA91277F15EC00F062A6 /* words */; };
-		D728AA93277F15EC00F062A6 /* words in Resources */ = {isa = PBXBuildFile; fileRef = D728AA91277F15EC00F062A6 /* words */; };
 		D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
-		D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
-		D72C1F6F277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
 		D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
-		D787A13D277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
 		D787A13E277C82680033F187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12D277C82670033F187 /* ContentView.swift */; };
-		D787A13F277C82680033F187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12D277C82670033F187 /* ContentView.swift */; };
 		D787A140277C82680033F187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D787A12E277C82680033F187 /* Assets.xcassets */; };
-		D787A141277C82680033F187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D787A12E277C82680033F187 /* Assets.xcassets */; };
 		D787A14E277C83E80033F187 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A14D277C83E80033F187 /* WordsView.swift */; };
-		D787A14F277C83E80033F187 /* WordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A14D277C83E80033F187 /* WordsView.swift */; };
 		D787A151277C84190033F187 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A150277C84190033F187 /* Controller.swift */; };
-		D787A152277C84190033F187 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A150277C84190033F187 /* Controller.swift */; };
 		D787A154277CBAC70033F187 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View.swift */; };
-		D787A155277CBAC70033F187 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A153277CBAC70033F187 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D71C836B277CEA7D00AC8F5F /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		D728AA8E277F15DB00F062A6 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		D728AA91277F15EC00F062A6 /* words */ = {isa = PBXFileReference; lastKnownFileType = folder; path = words; sourceTree = "<group>"; };
+		D728AA97277F48A200F062A6 /* macCatalyst.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macCatalyst.entitlements; sourceTree = "<group>"; };
 		D72C1F69277CC1A20061D868 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		D72C1F6D277CE48B0061D868 /* Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		D787A12C277C82670033F187 /* WordsmytherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsmytherApp.swift; sourceTree = "<group>"; };
 		D787A12D277C82670033F187 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D787A12E277C82680033F187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D787A133277C82680033F187 /* Wordsmyther.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordsmyther.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D787A139277C82680033F187 /* Wordsmyther.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordsmyther.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D787A13B277C82680033F187 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		D787A14D277C83E80033F187 /* WordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsView.swift; sourceTree = "<group>"; };
 		D787A150277C84190033F187 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		D787A153277CBAC70033F187 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -59,15 +45,6 @@
 			files = (
 				D71C8376277CF8B000AC8F5F /* ActivityIndicatorView in Frameworks */,
 				D71C8370277CF60C00AC8F5F /* Algorithms in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D787A136277C82680033F187 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D71C8378277CF8B900AC8F5F /* ActivityIndicatorView in Frameworks */,
-				D71C8373277CF63800AC8F5F /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				D787A133277C82680033F187 /* Wordsmyther.app */,
-				D787A139277C82680033F187 /* Wordsmyther.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,7 +113,7 @@
 		D787A13A277C82680033F187 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				D787A13B277C82680033F187 /* macOS.entitlements */,
+				D728AA97277F48A200F062A6 /* macCatalyst.entitlements */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -166,27 +142,6 @@
 			productReference = D787A133277C82680033F187 /* Wordsmyther.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D787A138277C82680033F187 /* Wordsmyther (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D787A147277C82680033F187 /* Build configuration list for PBXNativeTarget "Wordsmyther (macOS)" */;
-			buildPhases = (
-				D787A135277C82680033F187 /* Sources */,
-				D787A136277C82680033F187 /* Frameworks */,
-				D787A137277C82680033F187 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Wordsmyther (macOS)";
-			packageProductDependencies = (
-				D71C8372277CF63800AC8F5F /* Algorithms */,
-				D71C8377277CF8B900AC8F5F /* ActivityIndicatorView */,
-			);
-			productName = "Wordsmyther (macOS)";
-			productReference = D787A139277C82680033F187 /* Wordsmyther.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,9 +153,6 @@
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					D787A132277C82680033F187 = {
-						CreatedOnToolsVersion = 13.2;
-					};
-					D787A138277C82680033F187 = {
 						CreatedOnToolsVersion = 13.2;
 					};
 				};
@@ -223,7 +175,6 @@
 			projectRoot = "";
 			targets = (
 				D787A132277C82680033F187 /* Wordsmyther (iOS) */,
-				D787A138277C82680033F187 /* Wordsmyther (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -235,15 +186,6 @@
 			files = (
 				D728AA92277F15EC00F062A6 /* words in Resources */,
 				D787A140277C82680033F187 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D787A137277C82680033F187 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D728AA93277F15EC00F062A6 /* words in Resources */,
-				D787A141277C82680033F187 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,22 +205,6 @@
 				D71C836C277CEA7D00AC8F5F /* Array.swift in Sources */,
 				D787A13E277C82680033F187 /* ContentView.swift in Sources */,
 				D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D787A135277C82680033F187 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D728AA90277F15DB00F062A6 /* Words.swift in Sources */,
-				D72C1F6B277CC1A20061D868 /* ScreenSize.swift in Sources */,
-				D787A155277CBAC70033F187 /* View.swift in Sources */,
-				D72C1F6F277CE48B0061D868 /* Comparable.swift in Sources */,
-				D787A152277C84190033F187 /* Controller.swift in Sources */,
-				D787A14F277C83E80033F187 /* WordsView.swift in Sources */,
-				D71C836D277CEA7D00AC8F5F /* Array.swift in Sources */,
-				D787A13F277C82680033F187 /* ContentView.swift in Sources */,
-				D787A13D277C82680033F187 /* WordsmytherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macCatalyst.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YUN383XGPH;
@@ -411,7 +338,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -420,6 +347,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.kevinrpb.Wordsmyther;
 				PRODUCT_NAME = Wordsmyther;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -431,6 +359,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macCatalyst.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YUN383XGPH;
@@ -441,7 +370,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,66 +379,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.kevinrpb.Wordsmyther;
 				PRODUCT_NAME = Wordsmyther;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		D787A148277C82680033F187 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YUN383XGPH;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.kevinrpb.Wordsmyther;
-				PRODUCT_NAME = Wordsmyther;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		D787A149277C82680033F187 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YUN383XGPH;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.kevinrpb.Wordsmyther;
-				PRODUCT_NAME = Wordsmyther;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -530,15 +404,6 @@
 			buildConfigurations = (
 				D787A145277C82680033F187 /* Debug */,
 				D787A146277C82680033F187 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D787A147277C82680033F187 /* Build configuration list for PBXNativeTarget "Wordsmyther (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D787A148277C82680033F187 /* Debug */,
-				D787A149277C82680033F187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -570,17 +435,7 @@
 			package = D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
 		};
-		D71C8372277CF63800AC8F5F /* Algorithms */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */;
-			productName = Algorithms;
-		};
 		D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
-			productName = ActivityIndicatorView;
-		};
-		D71C8377277CF8B900AC8F5F /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;

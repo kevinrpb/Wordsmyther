@@ -22,6 +22,7 @@ struct WordsView: View {
                             HStack {
                                 Spacer()
                                 Text(word)
+                                    .foregroundColor(WordsmytherApp.tintColor)
                                 Spacer()
                             }
                             .padding()

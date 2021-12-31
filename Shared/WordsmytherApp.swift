@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct WordsmytherApp: App {
-    private let controller: Controller = .init()
+    static let tintColor: Color = .indigo
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(controller)
         }
         .commands {
             SidebarCommands()

@@ -7,23 +7,46 @@
 
 import Foundation
 
-struct Words {
+actor Words {
     static let allowedLetters: [Character] = Array("QWERTYUIOPASDFGHJKLZXCVBNM")
     
-    static let allowedWords: [Int: [String]] = [
-        3: Self.readWordArray(of: 3),
-        4: Self.readWordArray(of: 4),
-        5: Self.readWordArray(of: 5),
-        6: Self.readWordArray(of: 6),
-        7: Self.readWordArray(of: 7),
-        8: Self.readWordArray(of: 8),
-        9: Self.readWordArray(of: 9)
-    ]
+    private lazy var allowedWords: [Int: Set<String>] = { [
+        3: Set(readWordArray(of: 3)),
+        4: Set(readWordArray(of: 4)),
+        5: Set(readWordArray(of: 5)),
+        6: Set(readWordArray(of: 6)),
+        7: Set(readWordArray(of: 7)),
+        8: Set(readWordArray(of: 8)),
+        9: Set(readWordArray(of: 9))
+    ] }()
     
-    static private let decoder: JSONDecoder = .init()
+    private let decoder: JSONDecoder = .init()
     
-    private static func readWordArray(of length: Int) -> [String] {
-        guard let path = Bundle.main.path(forResource: "words\(length)", ofType: "json") else {
+    public static let shared: Words = .init()
+    private init() {}
+
+    func generateWords(of length: Int, using characters: [Character]) -> [String] {
+        guard (3...9).contains(length) else { return [] }
+        
+        let allowed = allowedWords[length]!
+        
+        let permutations = characters
+            .uniquePermutations(ofCount: length)
+            .map { String($0) }
+            .asSet()
+            
+            // If the file was loaded correctly, us is to filter, otherwise allow all
+//            .filter { allowed.count > 0 ? allowed.contains($0.lowercased()) : true }
+        
+        let validWords = allowed.count > 0
+            ? allowed.intersection(permutations)
+            : permutations
+        
+        return Array(validWords)
+    }
+    
+    private func readWordArray(of length: Int) -> [String] {
+        guard let path = Bundle.main.path(forResource: "words\(length)", ofType: "json", inDirectory: "words") else {
             return []
         }
 
@@ -31,9 +54,9 @@ struct Words {
 
         do {
             let data = try Data(contentsOf: url)
-            let words = try Self.decoder.decode([String].self, from: data)
+            let words = try decoder.decode([String].self, from: data)
             
-            return words
+            return words.map { $0.uppercased() }
         } catch {
             return []
         }

@@ -9,11 +9,12 @@ import SwiftUI
 import ActivityIndicatorView
 
 struct ContentView: View {
-    @EnvironmentObject var controller: Controller
+    @Environment(\.horizontalSizeClass) private var horizontalSize
+
+    @ObservedObject private var controller: Controller = .init()
 
     @FocusState private var textInputFocused: Bool
     @State private var textInput: String = ""
-    @State private var previousInput: String = ""
     
     @ScaledMetric private var size: Double = 20
     
@@ -25,58 +26,32 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
-                    VStack {
-                        LetterGrid()
-                            .padding()
-                        
-                        Spacer()
-                        
-                        VStack {
-                            ForEach(3...9, id: \.self) { length in
-                                WordLinkButton(length)
-                            }
-                        }
-                        .padding()
-                    }
-                }
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        ActivityIndicatorView(isVisible: .constant(true), type: .default)
-                            .frame(width: 50.0, height: 50.0)
-                            .foregroundColor(.indigo)
-                        Spacer()
-                    }
-                    Spacer()
-                }
-                .background(.ultraThinMaterial)
-                .opacity(controller.isLoading ? 1 : 0)
+                MainScreen()
+                ActivityOverlay()
             }
             .background(
                 TextInput()
             )
             .navigationTitle("Wordsmyther")
-            .background(Color.indigo.opacity(0.2))
+            .background(WordsmytherApp.tintColor.opacity(0.2))
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #elseif os(macOS)
 //            .frame(width: 400)
             #endif
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: horizontalSize == .compact ? .navigationBarLeading : .bottomBar) {
                     EraseButton()
                 }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
+
+                ToolbarItem(placement: horizontalSize == .compact ? .navigationBarTrailing : .bottomBar) {
                     GenerateButton()
                 }
             }
             
             #if os(macOS)
             EmptyView()
+                .background(WordsmytherApp.tintColor)
             #endif
         }
         .navigationViewStyle(.automatic)
@@ -88,6 +63,23 @@ struct ContentView: View {
         }
         #endif
     }
+    
+    private func MainScreen() -> some View {
+        ScrollView {
+            VStack {
+                LetterGrid()
+                
+                Spacer()
+                
+                VStack {
+                    ForEach(3...9, id: \.self) { length in
+                        WordLinkButton(length)
+                    }
+                }
+                .padding()
+            }
+        }
+    }
 
     private func LetterGrid() -> some View {
         HStack {
@@ -95,30 +87,31 @@ struct ContentView: View {
 
             VStack {
                 HStack {
-                    LetterGridItem(selected[0])
-                    LetterGridItem(selected[1])
-                    LetterGridItem(selected[2])
+                    LetterGridItem(0)
+                    LetterGridItem(1)
+                    LetterGridItem(2)
                 }
                 HStack {
-                    LetterGridItem(selected[3])
-                    LetterGridItem(selected[4])
-                    LetterGridItem(selected[5])
+                    LetterGridItem(3)
+                    LetterGridItem(4)
+                    LetterGridItem(5)
                 }
                 HStack {
-                    LetterGridItem(selected[6])
-                    LetterGridItem(selected[7])
-                    LetterGridItem(selected[8])
+                    LetterGridItem(6)
+                    LetterGridItem(7)
+                    LetterGridItem(8)
                 }
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.regularMaterial)
-                    .shadow(color: textInputFocused ? .indigo : .clear, radius: 2)
+                    .shadow(color: textInputFocused ? WordsmytherApp.tintColor : .clear, radius: 2)
             )
 
             Spacer()
         }
+        .padding()
         .onTapGesture {
             withAnimation {
                 textInputFocused.toggle()
@@ -126,15 +119,15 @@ struct ContentView: View {
         }
     }
     
-    private func LetterGridItem(_ letter: Character) -> some View {
-        Text("\(letter.description)")
+    private func LetterGridItem(_ index: Int) -> some View {
+        Text("\(selected[index].description)")
             .font(.body)
-            .foregroundColor(.indigo)
+            .foregroundColor(WordsmytherApp.tintColor)
             .frame(width: size, height: size)
             .padding()
             .onTapGesture {
                 withAnimation {
-                    controller.deselect(letter)
+                    controller.gridTapped(at: index)
                 }
             }
     }
@@ -143,45 +136,32 @@ struct ContentView: View {
         TextField("Letter", text: $textInput)
             .focused($textInputFocused)
             .opacity(0)
-            .onReceive(controller.$selectedLetters) { newValue in
-                textInput = String(controller.selectedLetters)
-//                print("sel:   ", textInput)
-                if textInput.count < previousInput.count {
-                    previousInput = textInput.uppercased()
+            .onChange(of: textInput) { newValue in
+                withAnimation {
+                    controller.inputUpdated(newValue)
                 }
             }
-            .onChange(of: textInput) { newValue in
-                guard newValue.uppercased() != previousInput.uppercased() else { return }
-//                print("")
-//                print("prev:  ", previousInput)
-//                print("new:   ", newValue)
-                
-                let value = newValue.uppercased()
-                var letter: Character
-                
-                if newValue.count > previousInput.count {
-                    letter = value.last ?? " "
-                } else {
-                    letter = previousInput.last ?? " "
-                }
-                
-                previousInput = textInput.uppercased()
+            .onSubmit {
                 withAnimation {
-                    controller.select(letter)
+                    controller.inputSubmitted()
                 }
+            }
+            .onReceive(controller.$selectedLetters) { newValue in
+                textInput = String(newValue)
             }
     }
     
     private func WordLinkButton(_ length: Int) -> some View {
         NavigationLink {
             WordsView(length: length)
+                .environmentObject(controller)
         } label: {
             HStack {
                 Text("\(length)")
                     .padding(8)
                     .background(
                         Circle()
-                            .fill(.indigo.opacity(0.1))
+                            .fill(WordsmytherApp.tintColor.opacity(0.1))
                     )
                 Text("Letters")
 
@@ -200,50 +180,72 @@ struct ContentView: View {
                     .fill(.regularMaterial)
             )
         }
-        .foregroundColor(.indigo)
+        .foregroundColor(WordsmytherApp.tintColor)
         .opacity(controller.hasChanges ? 0.5 : 1)
         .disabled(controller.hasChanges)
+    }
+    
+    private func ActivityOverlay() -> some View {
+        HStack {
+            Spacer()
+            VStack {
+                Spacer()
+                ActivityIndicatorView(isVisible: .constant(true), type: .default)
+                    .foregroundColor(WordsmytherApp.tintColor)
+                    .frame(width: 50.0, height: 50.0)
+                    .padding()
+                Text("Loading")
+                Text("(This may take a minute)")
+                    .font(.caption)
+                Spacer()
+            }
+            Spacer()
+        }
+        .background(.ultraThinMaterial)
+        .opacity(controller.isLoading ? 1 : 0)
     }
 
     private func EraseButton() -> some View {
         Button {
             withAnimation {
-                controller.clearSelected()
+                controller.eraseButtonTapped()
             }
         } label: {
             Label("Erase", systemImage: "xmark")
                 .font(.caption2)
-                .foregroundColor(.indigo)
+                .foregroundColor(WordsmytherApp.tintColor)
                 .padding(8)
             #if os(iOS)
                 .labelStyle(.iconOnly)
                 .background(
                     Circle()
-                        .fill(.indigo.opacity(0.1))
+                        .fill(WordsmytherApp.tintColor.opacity(0.1))
                 )
             #else
                 .labelStyle(.titleAndIcon)
             #endif
         }
-        .opacity(controller.selectedLetters.count > 0 ? 1 : 0)
-        .disabled(controller.isLoading) // TODO: should actually allow it and cancel the task
+        .opacity(
+            (controller.selectedLetters.count < 1 || controller.isLoading) ? 0 : 1
+        )
+        .disabled(controller.isLoading)
     }
     
     private func GenerateButton() -> some View {
         Button {
             withAnimation {
-                controller.generateWords()
+                controller.generateButtonTapped()
             }
         } label: {
             Label("Generate", systemImage: "character.textbox")
                 .font(.caption2)
-                .foregroundColor(.indigo)
+                .foregroundColor(WordsmytherApp.tintColor)
                 .padding(8)
             #if os(iOS)
                 .labelStyle(.iconOnly)
                 .background(
                     Circle()
-                        .fill(.indigo.opacity(0.1))
+                        .fill(WordsmytherApp.tintColor.opacity(0.1))
                 )
             #else
                 .labelStyle(.titleAndIcon)

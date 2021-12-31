@@ -8,6 +8,7 @@
 import Algorithms
 import SwiftUI
 
+@MainActor
 class Controller: ObservableObject {
     @Published var selectedLetters: [Character] = []
     @Published var hasChanges: Bool = true
@@ -22,7 +23,12 @@ class Controller: ObservableObject {
         9: []
     ]
     
-    func select(_ letter: Character) {
+    private var generationTask: Task<(), Never>? = nil
+    private var lastGenerated: [Character] = []
+    
+    // MARK: array managing
+    
+    private func select(_ letter: Character) {
         guard Words.allowedLetters.contains(letter) else { return }
 
         // TODO: Should actually allow duplicates
@@ -36,43 +42,99 @@ class Controller: ObservableObject {
         hasChanges = true
     }
     
-    func deselect(_ letter: Character) {
+    private func deselect(_ letter: Character) {
         guard selectedLetters.contains(letter) else { return }
 
         selectedLetters.removeAll(where: { $0 == letter })
         hasChanges = true
     }
     
-    func clearSelected() {
+    private func clearSelected() {
         guard selectedLetters.count > 0 else { return }
 
         selectedLetters.removeAll()
         hasChanges = true
     }
     
-    private func generateWords(of length: Int) {
-        guard (3...9).contains(length) else { return }
+    // MARK: Word generation
+    
+    private func generateWords() {
+        isLoading = true
         
-        let permutations = selectedLetters
-            .uniquePermutations(ofCount: length)
-            .map { String($0) }
-        
-        DispatchQueue.main.sync {
-            words[length] = permutations
+        generationTask = Task(priority: .background) {
+            let globalStart = DispatchTime.now()
+
+            for length in words.keys {
+                guard let task = generationTask, !task.isCancelled else { return }
+                
+                let start = DispatchTime.now()
+
+                words[length] = await Words.shared.generateWords(of: length, using: selectedLetters)
+                
+                let end = DispatchTime.now()
+                let ellapsed = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+                let timeInterval = Double(ellapsed) / 1_000_000_000 // Technically could overflow for long running tests
+                
+                print("[!] [L=\(length)] Generated \(words[length]!.count) words in \(timeInterval) seconds")
+            }
+
+            lastGenerated = selectedLetters
+            hasChanges = false
+            isLoading = false
+
+            let globalEnd = DispatchTime.now()
+            let globalEllapsed = globalEnd.uptimeNanoseconds - globalStart.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+            let globalTimeInterval = Double(globalEllapsed) / 1_000_000_000 // Technically could overflow for long running tests
+            
+            let generatedWords = words.keys.reduce(into: 0) { $0 += words[$1]!.count }
+            
+            print("[!] [***] Generated \(generatedWords) words in \(globalTimeInterval) seconds")
         }
     }
     
-    func generateWords() {
-        isLoading = true
-        
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now().advanced(by: .milliseconds(100))) { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.words.keys.forEach { length in strongSelf.generateWords(of: length) }
+    // MARK: UI handlers
+    
+    func gridTapped(at index: Int) {
+        guard selectedLetters.indices.contains(index) else { return }
+        selectedLetters.remove(at: index)
+    }
+    
+    func inputUpdated(_ newValue: String) {
+        guard newValue != String(selectedLetters) else { return }
+        hasChanges = true
+
+        if newValue.count > selectedLetters.count {
+            // We added a letter
+            guard selectedLetters.count < 9,
+                  let letter = newValue.uppercased().last else { return }
+
+            selectedLetters.append(letter)
             
-            DispatchQueue.main.sync {
-                strongSelf.hasChanges = false
-                strongSelf.isLoading = false
+            if selectedLetters.count == 9 && selectedLetters == lastGenerated {
+                hasChanges = false
             }
+        } else {
+            // We removed a letter (backspace)
+            selectedLetters.removeLast()
         }
+    }
+    
+    func inputSubmitted() {
+        guard selectedLetters.count == 9 else { return }
+        generateWords()
+    }
+    
+    func eraseButtonTapped() {
+        if isLoading {
+            // TODO: This doesn't really do what I want since it waits to complete next generation
+            generationTask?.cancel()
+        } else {
+            clearSelected()
+        }
+    }
+    
+    func generateButtonTapped() {
+        guard selectedLetters.count == 9 else { return }
+        generateWords()
     }
 }

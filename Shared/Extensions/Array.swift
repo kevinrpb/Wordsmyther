@@ -15,4 +15,6 @@ extension Array {
 
         return self[index]
     }
+    
+    public func asSet() -> Set<Element> where Element: Hashable { Set(self) }
 }
