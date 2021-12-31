@@ -106,7 +106,8 @@ class Controller: ObservableObject {
         if newValue.count > selectedLetters.count {
             // We added a letter
             guard selectedLetters.count < 9,
-                  let letter = newValue.uppercased().last else { return }
+                  let letter = newValue.uppercased().last,
+                  Words.allowedLetters.contains(letter) else { return }
 
             selectedLetters.append(letter)
             

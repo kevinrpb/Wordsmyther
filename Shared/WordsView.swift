@@ -31,7 +31,7 @@ struct WordsView: View {
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .fill(.regularMaterial)
+                                    .fill(WordsmytherApp.bgStyle, strokeBorder: WordsmytherApp.tintColor.opacity(0.2))
                             )
                         }
                     }
@@ -41,7 +41,11 @@ struct WordsView: View {
                 Spacer()
             }
         }
-        .background(Color.indigo.opacity(0.2))
+        #if targetEnvironment(macCatalyst)
+        .background(WordsmytherApp.tintColor.opacity(0.1))
+        #else
+        .background(WordsmytherApp.tintColor.opacity(0.2))
+        #endif
         .navigationTitle("\(length) letters")
         .navigationBarTitleDisplayMode(.inline)
         .onReceive(controller.$isLoading) { _ in

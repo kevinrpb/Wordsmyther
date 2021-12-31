@@ -103,8 +103,7 @@ struct ContentView: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(.regularMaterial)
-                    .shadow(color: textInputFocused ? WordsmytherApp.tintColor : .clear, radius: 2)
+                    .fill(WordsmytherApp.bgStyle, strokeBorder: WordsmytherApp.tintColor.opacity(textInputFocused ? 1 : 0.2))
             )
 
             Spacer()
@@ -175,7 +174,7 @@ struct ContentView: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(.regularMaterial)
+                    .fill(WordsmytherApp.bgStyle, strokeBorder: WordsmytherApp.tintColor.opacity(0.2))
             )
         }
         .foregroundColor(WordsmytherApp.tintColor)
@@ -247,9 +246,9 @@ struct ContentView: View {
             #endif
         }
         .opacity(
-            (controller.selectedLetters.count < 9 || controller.isLoading) ? 0 : 1
+            (controller.selectedLetters.count < 9 || controller.isLoading || !controller.hasChanges) ? 0 : 1
         )
-        .disabled(controller.isLoading)
+        .disabled(controller.isLoading || !controller.hasChanges)
         #if targetEnvironment(macCatalyst)
         .buttonStyle(.bordered)
         #endif

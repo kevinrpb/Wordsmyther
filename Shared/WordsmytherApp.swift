@@ -10,6 +10,11 @@ import SwiftUI
 @main
 struct WordsmytherApp: App {
     static let tintColor: Color = .indigo
+    #if targetEnvironment(macCatalyst)
+    static let bgStyle = tintColor.opacity(0.1)
+    #else
+    static let bgStyle = Material.regularMaterial
+    #endif
 
     var body: some Scene {
         WindowGroup {
