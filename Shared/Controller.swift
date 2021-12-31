@@ -9,8 +9,6 @@ import Algorithms
 import SwiftUI
 
 class Controller: ObservableObject {
-    static let allowedLetters: [Character] = Array("QWERTYUIOPASDFGHJKLZXCVBNM")
-    
     @Published var selectedLetters: [Character] = []
     @Published var hasChanges: Bool = true
     @Published var isLoading: Bool = false
@@ -25,7 +23,7 @@ class Controller: ObservableObject {
     ]
     
     func select(_ letter: Character) {
-        guard Self.allowedLetters.contains(letter) else { return }
+        guard Words.allowedLetters.contains(letter) else { return }
 
         // TODO: Should actually allow duplicates
         if selectedLetters.contains(letter) {
