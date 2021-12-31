@@ -27,6 +27,15 @@
           "revision": "0a5bc04095a675662cf24757cc0640aa2204253b",
           "version": "1.0.2"
         }
+      },
+      {
+        "package": "SwiftUIcon",
+        "repositoryURL": "https://github.com/velos/SwiftUIcon",
+        "state": {
+          "branch": null,
+          "revision": "f530d4dd8ef80303675db5db12349cb53f59ae35",
+          "version": "0.3.0"
+        }
       }
     ]
   },

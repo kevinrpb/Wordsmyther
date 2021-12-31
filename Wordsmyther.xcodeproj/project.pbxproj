@@ -16,6 +16,8 @@
 		D728AA9B277F519800F062A6 /* FullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AA9A277F519800F062A6 /* FullScreenView.swift */; };
 		D728AA9D277F552A00F062A6 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AA9C277F552A00F062A6 /* Shape.swift */; };
 		D728AA9F277F5B3B00F062A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D728AA9E277F5B3B00F062A6 /* README.md */; };
+		D728AAA2277F632B00F062A6 /* SwiftUIcon in Frameworks */ = {isa = PBXBuildFile; productRef = D728AAA1277F632B00F062A6 /* SwiftUIcon */; };
+		D728AAA4277F633600F062A6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D728AAA3277F633600F062A6 /* Icon.swift */; };
 		D72C1F6A277CC1A20061D868 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F69277CC1A20061D868 /* ScreenSize.swift */; };
 		D72C1F6E277CE48B0061D868 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72C1F6D277CE48B0061D868 /* Comparable.swift */; };
 		D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D787A12C277C82670033F187 /* WordsmytherApp.swift */; };
@@ -35,6 +37,7 @@
 		D728AA9A277F519800F062A6 /* FullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenView.swift; sourceTree = "<group>"; };
 		D728AA9C277F552A00F062A6 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		D728AA9E277F5B3B00F062A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D728AAA3277F633600F062A6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		D72C1F69277CC1A20061D868 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		D72C1F6D277CE48B0061D868 /* Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		D787A12C277C82670033F187 /* WordsmytherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsmytherApp.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D71C8376277CF8B000AC8F5F /* ActivityIndicatorView in Frameworks */,
+				D728AAA2277F632B00F062A6 /* SwiftUIcon in Frameworks */,
 				D71C8370277CF60C00AC8F5F /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				D72C1F69277CC1A20061D868 /* ScreenSize.swift */,
+				D728AAA3277F633600F062A6 /* Icon.swift */,
 				D728AA9A277F519800F062A6 /* FullScreenView.swift */,
 				D728AA98277F4E7000F062A6 /* HostingViewFinder.swift */,
 				D728AA8E277F15DB00F062A6 /* Words.swift */,
@@ -139,6 +144,7 @@
 			buildPhases = (
 				D787A12F277C82680033F187 /* Sources */,
 				D787A130277C82680033F187 /* Frameworks */,
+				D728AAA5277F63B000F062A6 /* Make Icon */,
 				D787A131277C82680033F187 /* Resources */,
 			);
 			buildRules = (
@@ -149,6 +155,7 @@
 			packageProductDependencies = (
 				D71C836F277CF60C00AC8F5F /* Algorithms */,
 				D71C8375277CF8B000AC8F5F /* ActivityIndicatorView */,
+				D728AAA1277F632B00F062A6 /* SwiftUIcon */,
 			);
 			productName = "Wordsmyther (iOS)";
 			productReference = D787A133277C82680033F187 /* Wordsmyther.app */;
@@ -181,6 +188,7 @@
 			packageReferences = (
 				D71C836E277CF60C00AC8F5F /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
+				D728AAA0277F632B00F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */,
 			);
 			productRefGroup = D787A134277C82680033F187 /* Products */;
 			projectDirPath = "";
@@ -204,6 +212,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D728AAA5277F63B000F062A6 /* Make Icon */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/Shared/Util/Icon.swift",
+			);
+			name = "Make Icon";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/Shared/Assets.xcassets",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"$(PROJECT_DIR)/$(PRODUCT_NAME)/Shared/\"\n\n\"${BUILD_ROOT%Build/*}SourcePackages/checkouts/SwiftUIcon/build-script.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D787A12F277C82680033F187 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -218,6 +249,7 @@
 				D787A151277C84190033F187 /* Controller.swift in Sources */,
 				D728AA9D277F552A00F062A6 /* Shape.swift in Sources */,
 				D787A14E277C83E80033F187 /* WordsView.swift in Sources */,
+				D728AAA4277F633600F062A6 /* Icon.swift in Sources */,
 				D71C836C277CEA7D00AC8F5F /* Array.swift in Sources */,
 				D787A13E277C82680033F187 /* ContentView.swift in Sources */,
 				D787A13C277C82680033F187 /* WordsmytherApp.swift in Sources */,
@@ -443,6 +475,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		D728AAA0277F632B00F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/velos/SwiftUIcon";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -455,6 +495,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D71C8374277CF8B000AC8F5F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
+		};
+		D728AAA1277F632B00F062A6 /* SwiftUIcon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D728AAA0277F632B00F062A6 /* XCRemoteSwiftPackageReference "SwiftUIcon" */;
+			productName = SwiftUIcon;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
